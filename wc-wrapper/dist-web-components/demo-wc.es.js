@@ -1,5 +1,5 @@
 const t = () => {
-  import("./DemoForm.wc-DrhAHljs.js");
+  import("./DemoForm.wc-BxPh82Y1.js");
 };
 export {
   t as default

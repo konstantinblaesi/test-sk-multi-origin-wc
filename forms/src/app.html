@@ -9,4 +9,20 @@
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
+	<script>
+		function sendHeight(trigger) {
+        const height = document.body.scrollHeight;
+        const params = [{ type: 'formHeight', height }, '*']
+        console.log(`Sending via postMessage (trigger: ${trigger}` , params)
+        parent.postMessage(...params);
+    }
+
+	function run() {
+		console.log("Mounting Form")
+		window.addEventListener('load', () => sendHeight("load"));
+		window.addEventListener('resize', () => sendHeight("resize"));
+		sendHeight("initial");	
+	}
+	run();
+	</script>
 </html>

@@ -16,6 +16,7 @@ const allowedOrigin = new URL(url).origin
 
 onMount(() => {
 	window.addEventListener('message', (event) => {
+		console.log("Received message", event)
 		if (event.origin !== allowedOrigin) return;
 	
 		const { type, height } = event.data;
@@ -26,7 +27,7 @@ onMount(() => {
 })
 
 </script>
-
+<h1>Hello from Form WC Wrapper</h1>
 <iframe bind:this={iframRef} {title} src={url}></iframe>
 
 <style>

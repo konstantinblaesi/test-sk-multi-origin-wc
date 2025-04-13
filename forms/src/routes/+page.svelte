@@ -12,14 +12,18 @@
         expanded = true;
     }
 
-    function sendHeight() {
+    function sendHeight(trigger: string) {
         const height = document.body.scrollHeight;
-        parent.postMessage({ type: 'formHeight', height }, '*');
+        const params = [{ type: 'formHeight', height }, '*'] as const
+        console.log(`Sending via postMessage (trigger: ${trigger}` , params)
+        parent.postMessage(...params);
     }
 
     onMount(() => {
-        window.addEventListener('load', sendHeight);
-        window.addEventListener('resize', sendHeight);
+        console.log("Mounting Form")
+        window.addEventListener('load', () => sendHeight("load"));
+        window.addEventListener('resize', () => sendHeight("resize"));
+        sendHeight("initial");
     })
 
 </script>
